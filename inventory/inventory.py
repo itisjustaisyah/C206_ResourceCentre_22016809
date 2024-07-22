@@ -2,12 +2,12 @@ from inventory.camera import Camera
 from inventory.laptop import Laptop
 
 
-class Inventory():
+class Inventory:
     def __init__(self):
         self.cameraList = []
         self.laptopList = []
 
-        ## Prepare the data (Inventory list)
+        # Prepare the data (Inventory list)
 
     def addLaptop(self, assetTag, description, os):
         # Check for correct values
@@ -122,3 +122,33 @@ class Inventory():
                         success = True
 
         return success
+
+    def findAsset(self, assetTag):
+        for i in self.cameraList:
+            if i.getAssetTag() == assetTag:
+                return i
+        for i in self.laptopList:
+            if i.getAssetTag() == assetTag:
+                return i
+        return None
+
+    def getNotAvailableCamera(self):
+        table = "{:<10}{:<30}{:<10}{:<12}{:<10}\n".format("AssetTag", "Description", "Available", "Due Date", "Zoom")
+        if len(self.cameraList) <= 0:
+            table += "There is no camera to display."
+        for camera in self.cameraList:
+            if camera.getIsAvailable() == "No":
+                table += "{:<10}{:<30}{:<10}{:<12}{:<10}\n".format(camera.getAssetTag(), camera.getDescription(), camera.getIsAvailable(), camera.getDueDate(), camera.getOpticalZoom())
+
+
+        return table
+
+    def getNotAvailableLaptop(self):
+        table = "{:<10}{:<30}{:<10}{:<12}{:<10}\n".format("AssetTag", "Description", "Available", "Due Date", "OS")
+        if len(self.laptopList) <= 0:
+            table += "There is no laptop to display."
+        for laptop in self.laptopList:
+            if laptop.getIsAvailable() == "No":
+                table += "{:<10}{:<30}{:<10}{:<12}{:<10}\n".format(laptop.getAssetTag(), laptop.getDescription(), laptop.getIsAvailable(), laptop.getDueDate(), laptop.getOS())
+
+        return table

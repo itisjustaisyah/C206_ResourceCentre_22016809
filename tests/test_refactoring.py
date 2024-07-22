@@ -5,9 +5,9 @@ class Test_Refactor_Codes:
     #################### Test findAsset(assetTag) ######################
     def test_find_existing_camera(self):
         test_inventory = Inventory()
-        result = test_inventory.addCamera("C001", "Test camera 1", 5)
-        result = test_inventory.addCamera("C002", "Test camera 2", 10)
-        result = test_inventory.addCamera("C003", "Test camera 3", 6)
+        result = test_inventory.addAsset("Camera", "C001", "Test camera 1", 5)
+        result = test_inventory.addAsset("Camera", "C002", "Test camera 2", 10)
+        result = test_inventory.addAsset("Camera", "C003", "Test camera 3", 6)
 
         return_value = test_inventory.findAsset("C001")
 
@@ -15,9 +15,9 @@ class Test_Refactor_Codes:
 
     def test_find_non_existing_camera(self):
         test_inventory = Inventory()
-        result = test_inventory.addCamera("C001", "Test camera 1", 5)
-        result = test_inventory.addCamera("C002", "Test camera 2", 10)
-        result = test_inventory.addCamera("C003", "Test camera 3", 6)
+        result = test_inventory.addAsset("Camera", "C001", "Test camera 1", 5)
+        result = test_inventory.addAsset("Camera", "C002", "Test camera 2", 10)
+        result = test_inventory.addAsset("Camera", "C003", "Test camera 3", 6)
 
         return_value = test_inventory.findAsset("C004")
 
@@ -25,9 +25,9 @@ class Test_Refactor_Codes:
 
     def test_find_existing_laptop(self):
         test_inventory = Inventory()
-        result = test_inventory.addLaptop("L001", "Test Laptop 1", "WINXP")
-        result = test_inventory.addLaptop("L002", "Test Laptop 2", "MACOS")
-        result = test_inventory.addLaptop("L003", "Test Laptop 3", "WINXP")
+        result = test_inventory.addAsset("Laptop", "L001", "Test Laptop 1", "WINXP")
+        result = test_inventory.addAsset("Laptop", "L002", "Test Laptop 2", "MACOS")
+        result = test_inventory.addAsset("Laptop", "L003", "Test Laptop 3", "WINXP")
 
         return_value = test_inventory.findAsset("L001")
 
@@ -35,9 +35,9 @@ class Test_Refactor_Codes:
 
     def test_find_non_existing_laptop(self):
         test_inventory = Inventory()
-        result = test_inventory.addLaptop("L001", "Test Laptop 1", "WINXP")
-        result = test_inventory.addLaptop("L002", "Test Laptop 2", "MACOS")
-        result = test_inventory.addLaptop("L003", "Test Laptop 3", "WINXP")
+        result = test_inventory.addAsset("Laptop", "L001", "Test Laptop 1", "WINXP")
+        result = test_inventory.addAsset("Laptop", "L002", "Test Laptop 2", "MACOS")
+        result = test_inventory.addAsset("Laptop", "L003", "Test Laptop 3", "WINXP")
 
         return_value = test_inventory.findAsset("L004")
 
@@ -55,9 +55,9 @@ class Test_Refactor_Codes:
 
     def test_view_camera_all_available_for_Not_available(self):
         test_inventory = Inventory()
-        result = test_inventory.addCamera("C001", "Test camera 1", 5)
-        result = test_inventory.addCamera("C002", "Test camera 2", 10)
-        result = test_inventory.addCamera("C003", "Test camera 3", 6)
+        result = test_inventory.addAsset("Camera", "C001", "Test camera 1", 5)
+        result = test_inventory.addAsset("Camera", "C002", "Test camera 2", 10)
+        result = test_inventory.addAsset("Camera", "C003", "Test camera 3", 6)
 
         tested_text = test_inventory.getNotAvailableCamera()
 
@@ -66,11 +66,11 @@ class Test_Refactor_Codes:
 
     def test_view_camera_only_not_available(self):
         test_inventory = Inventory()
-        result = test_inventory.addCamera("C001", "Test camera 1", 5)
-        result = test_inventory.addCamera("C002", "Test camera 2", 10)
-        result = test_inventory.addCamera("C003", "Test camera 3", 6)
-        test_inventory.loanCamera("C002", "01-01-2025")
-        test_inventory.loanCamera("C003", "01-01-2025")
+        result = test_inventory.addAsset("Camera", "C001", "Test camera 1", 5)
+        result = test_inventory.addAsset("Camera", "C002", "Test camera 2", 10)
+        result = test_inventory.addAsset("Camera", "C003", "Test camera 3", 6)
+        test_inventory.loanAsset("C002", "01-01-2025")
+        test_inventory.loanAsset("C003", "01-01-2025")
 
         tested_text = test_inventory.getNotAvailableCamera()
 
@@ -92,9 +92,9 @@ class Test_Refactor_Codes:
 
     def test_view_laptop_all_available_for_Not_available(self):
         test_inventory = Inventory()
-        test_inventory.addLaptop("L001", "Test Laptop 1", "WINXP")
-        test_inventory.addLaptop("L002", "Test Laptop 2", "MACOS")
-        test_inventory.addLaptop("L003", "Test Laptop 3", "WINXP")
+        test_inventory.addAsset("Laptop", "L001", "Test Laptop 1", "WINXP")
+        test_inventory.addAsset("Laptop", "L002", "Test Laptop 2", "MACOS")
+        test_inventory.addAsset("Laptop", "L003", "Test Laptop 3", "WINXP")
 
         tested_text = test_inventory.getNotAvailableLaptop()
 
@@ -103,11 +103,11 @@ class Test_Refactor_Codes:
 
     def test_view_laptop_only_not_available(self):
         test_inventory = Inventory()
-        test_inventory.addLaptop("L001", "Test Laptop 1", "WINXP")
-        test_inventory.addLaptop("L002", "Test Laptop 2", "MACOS")
-        test_inventory.addLaptop("L003", "Test Laptop 3", "WINXP")
-        test_inventory.loanLaptop("L002", "01-01-2025")
-        test_inventory.loanLaptop("L003", "01-01-2025")
+        test_inventory.addAsset("Laptop", "L001", "Test Laptop 1", "WINXP")
+        test_inventory.addAsset("Laptop", "L002", "Test Laptop 2", "MACOS")
+        test_inventory.addAsset("Laptop", "L003", "Test Laptop 3", "WINXP")
+        test_inventory.loanAsset("L002", "01-01-2025")
+        test_inventory.loanAsset("L003", "01-01-2025")
 
         tested_text = test_inventory.getNotAvailableLaptop()
 

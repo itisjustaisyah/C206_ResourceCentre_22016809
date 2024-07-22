@@ -52,7 +52,7 @@ class ResourceCenter:
                     assetTag = input("Enter asset tag >")
                     description = input("Enter description >")
                     opticalzoom = int(input("Enter optical zoom >"))
-                    result = self.inventory.addCamera(assetTag, description, opticalzoom)
+                    result = self.inventory.addAsset(assetTag, description, opticalzoom)
                     if result:
                         print("Digital camera added.")
                     else:
@@ -62,7 +62,7 @@ class ResourceCenter:
                     assetTag = input("Enter asset tag >")
                     description = input("Enter descrition >")
                     os = input("Enter os >")
-                    result = self.inventory.addLaptop(assetTag, description, os)
+                    result = self.inventory.addAsset(assetTag, description, os)
                     if result:
                         print("Laptop added.")
                     else:
@@ -79,11 +79,11 @@ class ResourceCenter:
 
                 # TO-DO: Write the code to ADD a camcorder or chrome book.
                 print("Digital Cameras:")
-                for c in self.inventory.getAvailableCamera():
+                for c in self.inventory.getAvailableAsset():
                     print("Asset Tag: " + c.getAssetTag() + ", Description: " + c.getDescription() + ", Optical Zoom: " + str(c.getOpticalZoom()))
 
                 print("\nLaptops:")
-                for l in self.inventory.getAvailableLaptop():
+                for l in self.inventory.getAvailableAsset():
                     print("Asset Tag: " + l.getAssetTag() + ", Description: " + l.getDescription() + ", OS: " + l.getOS())
             elif choice == 3:
                 # Refactor (B): use printHeader(mesage)
@@ -100,22 +100,22 @@ class ResourceCenter:
 
                 # TO-DO: Write the code to LOAN a digital camera or laptop
                 if option == 1:
-                    print(self.inventory.getAvailableCamera())
+                    print(self.inventory.getAvailableAsset())
                     assetTag = input("Enter asset tag >")
                     duedate = input("Enter due date >")
 
-                    result = self.inventory.loanCamera(assetTag, duedate)
+                    result = self.inventory.loanAsset(assetTag, duedate)
 
                     if result:
                         print("Camera",assetTag,"successfully loaned out.")
                     else:
                         print("Error loaning camera.")
                 elif option == 2:
-                    print(self.inventory.getAvailableLaptop())
+                    print(self.inventory.getAvailableAsset())
                     assetTag = input("Enter asset tag >")
                     duedate = input("Enter due date >")
 
-                    result = self.inventory.loanLaptop(assetTag, duedate)
+                    result = self.inventory.loanAsset(assetTag, duedate)
 
                     if result:
                         print("Laptop",assetTag,"successfully loaned out.")
@@ -151,7 +151,7 @@ class ResourceCenter:
 
                     assetTag = input("Enter asset tag >")
 
-                    result = self.inventory.returnCamera(assetTag)
+                    result = self.inventory.returnAsset(assetTag)
 
                     if result:
                         print("Camera",assetTag,"successfully returned.")
@@ -169,7 +169,7 @@ class ResourceCenter:
 
                     assetTag = input("Enter asset tag >")
 
-                    result = self.inventory.returnLaptop(assetTag)
+                    result = self.inventory.returnAsset(assetTag)
 
                     if result:
                         print("Laptop",assetTag,"successfully returned.")
